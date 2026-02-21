@@ -1,4 +1,4 @@
-/* Reset Dasar */
+/* Aturan global: hilangkan jarak bawaan browser */
 * {
     margin: 0;
     padding: 0;
@@ -8,9 +8,10 @@
 
 body {
     background-color: #ffffff;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Mencegah geser ke samping */
 }
 
+/* Lapisan hitam transparan di belakang menu */
 .overlay {
     position: fixed;
     top: 0;
@@ -18,38 +19,35 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.5);
-    display: none;
+    display: none; /* Sembunyi secara default */
     z-index: 900;
 }
 
 .overlay.active {
-  display: block;
+    display: block; /* Muncul saat ada class 'active' */
 }
 
+/* Menu samping (Sidebar) */
 .sidebar {
     position: fixed;
     top: 0;
-    left: -260px;
+    left: -260px; /* Sembunyi di kiri layar */
     width: 250px;
     height: 100%;
     background-color: #fff;
     box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-    transition: 0.3s ease;
+    transition: 0.3s ease; /* Animasi geser */
     z-index: 1000;
 }
 
 .sidebar.active {
-  left: 0;
+    left: 0; /* Muncul ke layar */
 }
 
-.sidebar-content {
-  padding: 20px;
-  color: #606060;
-}
-
+/* Header bagian atas */
 .header {
     display: flex;
-    justify-content: space-between; /* Ini kunci agar kiri dan kanan terpisah */
+    justify-content: space-between;
     align-items: center;
     padding: 0 16px;
     height: 56px;
@@ -59,50 +57,19 @@ body {
     z-index: 100;
 }
 
-.header-left {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    z-index: 5;
-}
-
+/* Logo/Brand di header */
 .navbar-brand {
     font-size: 1.2rem;
     font-weight: bold;
     color: #0f0f0f;
 }
 
-.header-icons {
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.nav-icon {
-    fill: #000;
-    width: 24px !important;
-    height: 24px !important;
-    min-width: 24px;
-    min-height: 24px;
-    cursor: pointer;
-    display: block;
-}
-
-.search-wrapper {
-  position: absolute;
-  right: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  pointer-events: none;
-  z-index: 10;
-}
-
+/* Kolom pencarian */
 .search-box {
     border: 2px solid transparent;
     border-radius: 20px;
     outline: none;
-    width: 0;
+    width: 0; /* Lebar nol saat tertutup */
     padding: 5px 0;
     opacity: 0;
     background-color: #f2f2f2;
@@ -110,76 +77,28 @@ body {
 }
 
 .search-box.active {
-    width: 280px;
+    width: 280px; /* Melebar saat aktif */
     padding: 5px 35px 5px 12px;
     opacity: 1;
     border: 2px solid #065fd4;
-    margin-right: 10px;
-    pointer-events: auto;
 }
 
-.clear-icon {
-    position: absolute;
-    right: 20px;
-    fill: #606060;
-    width: 18px !important;
-    height: 18px !important;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease;
-    transform: scale(0.5);
-    pointer-events: auto !important;
-    z-index: 100;
-}
-
-.search-box.active + .clear-icon {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
-}
-
-.header.search-active .navbar-brand {
-    display: none;
-}
-
-/* --- VIDEO PLAYER MODIFIKASI --- */
-.content-area { 
-    padding: 0; 
-    background-color: #f9f9f9; 
-}
-
+/* Wadah Video */
 .video-container { 
-    background-color: #000; /* Warna dasar */
+    background-color: #000;
     width: 100%;
-    aspect-ratio: 16 / 9; /* Kunci Wadah ke 16:9 */
+    aspect-ratio: 16 / 9; /* Menjaga rasio layar lebar */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    transition: background-color 0.8s ease; /* Efek transisi warna halus */
+    transition: background-color 0.8s ease; /* Transisi warna dari Color Thief */
 }
 
-.video-container video { 
-    max-width: 100%; 
-    max-height: 100%; 
-    display: block;
-    object-fit: contain; /* Penting: menjaga rasio video asli di dalam wadah */
-}
-
-.video-info { 
-    padding: 12px 15px; 
-}
-
-.video-info h3 {
-  font-size: 1rem;
-  margin-bottom: 5px;
-  color: #0f0f0f;
-}
-
+/* Panel deskripsi dari bawah (Bottom Sheet) */
 .bottom-sheet {
     position: fixed;
-    bottom: -100%;
+    bottom: -100%; /* Sembunyi di bawah layar */
     left: 0;
     width: 100%;
     height: 65%;
@@ -191,84 +110,10 @@ body {
 }
 
 .bottom-sheet.active {
-  bottom: 0;
+    bottom: 0; /* Muncul ke atas */
 }
 
-.sheet-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-}
-
-.sheet-header svg {
-  width: 28px;
-  height: 28px;
-  fill: #0f0f0f;
-}
-
-.channel-info {
-  padding: 15px;
-}
-
-.profile-flex {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.profile-img {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.name-area h1 {
-  font-size: 1.3rem;
-  display: flex;
-  align-items: center;
-}
-
-.verified-icon {
-    fill: #606060;
-    width: 14px !important;
-    height: 14px !important;
-    margin-left: 5px;
-}
-
-.stats {
-  color: #606060;
-  font-size: 0.8rem;
-}
-
-.desc-container {
-  margin-top: 10px;
-  cursor: pointer;
-}
-
-.desc-text {
-  font-size: 0.85rem;
-  color: #333;
-  line-height: 1.4;
-}
-
-.more-text {
-  font-weight: bold;
-  color: #0f0f0f;
-}
-
-.link {
-  display: inline-block;
-  margin-top: 8px;
-  color: #065fd4;
-  text-decoration: none;
-  font-size: 0.85rem;
-  word-break: break-all;
-}
-
+/* Tombol Subscribe */
 .sub-btn { 
     width: 100%;
     background: #0f0f0f;
@@ -281,36 +126,6 @@ body {
 }
 
 .sub-btn.subscribed {
-  background-color: #f2f2f2;
-  color: #0f0f0f;
-}
-
-.tabs {
-  display: flex;
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.tab {
-  padding: 12px 18px;
-  color: #606060;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.tab.active {
-  color: #0f0f0f;
-  border-bottom: 2px solid #0f0f0f;
-}
-
-.banner img {
-  width: 100%;
-  height: 100px;
-  object-fit: cover;
-}
-
-/* Tambahkan di bagian bawah file CSS untuk keamanan layar kecil */
-@media (max-width: 380px) {
-    .search-box.active {
-        width: 160px; /* Lebar lebih fleksibel untuk HP kecil */
-    }
+    background-color: #f2f2f2; /* Warna saat sudah subscribe */
+    color: #0f0f0f;
 }
