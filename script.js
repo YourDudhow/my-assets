@@ -88,6 +88,11 @@ function updatePosterColor() {
             console.log("Gagal mengambil warna dominan", e);
         }
     };
+    
+    img.onerror = function() {
+    console.log("Gambar poster gagal dimuat, menggunakan warna default.");
+    vidContainer.style.backgroundColor = "#000"; // Fallback ke hitam
+    };
 }
 
 window.addEventListener('load', updatePosterColor);
