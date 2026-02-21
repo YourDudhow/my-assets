@@ -47,32 +47,34 @@ body {
   color: #606060;
 }
 
+.header {
+    display: flex;
+    justify-content: space-between; /* Mendorong konten ke ujung kiri & kanan */
+    align-items: center;
+    padding: 10px 16px;
+    height: 56px;
+    background-color: #ffffff;
+}
+
 .header-left {
     display: flex;
     align-items: center;
-    gap: 15px; /* Jarak antara ikon hamburger dan teks */
+    gap: 18px; /* Jarak antara hamburger dan tulisan TesTimoni */
 }
 
-.navbar-brand {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #0f0f0f;
-    letter-spacing: -0.5px;
+.header-icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Memastikan ikon search merapat ke kanan */
 }
 
 .nav-icon {
-    fill: black;
+    fill: #000;
     height: 24px !important;
     width: 24px !important;
     min-width: 24px;
     min-height: 24px;
     cursor: pointer;
-    display: block;
-}
-
-.header-icons {
-  display: flex;
-  align-items: center;
 }
 
 .search-wrapper {
