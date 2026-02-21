@@ -139,6 +139,10 @@ body {
   transform: scale(1);
 }
 
+.header.search-active .navbar-brand {
+    display: none;
+}
+
 /* --- VIDEO PLAYER MODIFIKASI --- */
 .content-area { 
     padding: 0; 
