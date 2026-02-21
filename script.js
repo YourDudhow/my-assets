@@ -26,6 +26,9 @@ clearBtn.addEventListener('click', () => {
         searchInput.focus();
     } else {
         searchInput.classList.remove('active');
+        if (typeof header !== 'undefined') {
+            header.classList.remove('search-active');
+        }
     }
 });
 
