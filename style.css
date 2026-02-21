@@ -104,43 +104,34 @@ body {
     padding: 5px 0;
     opacity: 0;
     background-color: #f2f2f2;
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, border-color 0.4s ease;
+    transition: all 0.4s ease;
 }
 
 .search-box.active {
-    width: calc(100vw - 120px); /* Melebar ke kiri menutupi brand */
-    max-width: 280px;
-    padding: 7px 35px 7px 15px;
+    width: 280px;
+    padding: 5px 35px 5px 12px;
     opacity: 1;
-    border-color: #065fd4;
-    pointer-events: all;
+    border: 2px solid #065fd4;
+    margin-right: 10px;
 }
 
 .clear-icon {
     position: absolute;
-    right: 10px;
+    right: 20px;
     fill: #606060;
     width: 18px !important;
     height: 18px !important;
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
-    transition: 0.3s ease;
+    transition: all 0.4s ease;
+    transform: scale(0.5);
 }
 
 .search-box.active + .clear-icon {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Sembunyikan brand agar tidak membayang di bawah kolom search */
-.navbar-brand {
-    transition: opacity 0.2s ease;
-}
-
-/* Kita akan gunakan class bantuan di header lewat JS nanti */
-.header.search-active .navbar-brand {
-    opacity: 0;
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
 }
 
 /* --- VIDEO PLAYER MODIFIKASI --- */
