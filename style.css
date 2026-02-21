@@ -150,7 +150,7 @@ body {
 }
 
 .video-container { 
-    background: #000; /* Warna dasar */
+    background-color: #000; /* Warna dasar */
     width: 100%;
     aspect-ratio: 16 / 9; /* Kunci Wadah ke 16:9 */
     display: flex;
