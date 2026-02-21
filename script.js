@@ -29,35 +29,6 @@ clearBtn.addEventListener('click', () => {
     }
 });
 
-// ... kode atas tetap sama ...
-
-const header = document.querySelector('.header'); // Tambahkan ini
-
-searchIcon.addEventListener('click', () => {
-    searchInput.classList.toggle('active');
-    header.classList.toggle('search-active'); // Sembunyikan/munculkan brand
-    if (searchInput.classList.contains('active')) searchInput.focus();
-});
-
-clearBtn.addEventListener('click', () => {
-    if (searchInput.value.length > 0) {
-        searchInput.value = "";
-        searchInput.focus();
-    } else {
-        searchInput.classList.remove('active');
-        header.classList.remove('search-active'); // Munculkan brand lagi
-    }
-});
-
-// Tambahkan di bagian overlay agar saat diklik luar, brand muncul kembali
-overlay.addEventListener('click', () => {
-    sideMenu.classList.remove('active');
-    descPanel.classList.remove('active');
-    overlay.classList.remove('active');
-    searchInput.classList.remove('active');
-    header.classList.remove('search-active'); 
-});
-
 // LOGIKA BOTTOM SHEET
 const descArea = document.getElementById('descArea');
 const descPanel = document.getElementById('descPanel');
