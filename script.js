@@ -1,32 +1,44 @@
-// ELEMEN UMUM
 const overlay = document.getElementById('overlay');
+const header = document.getElementById('mainHeader');
 
 // LOGIKA SIDEBAR
 const menuToggle = document.getElementById('menuToggle');
 const sideMenu = document.getElementById('sideMenu');
 
 menuToggle.addEventListener('click', () => {
-    sideMenu.classList.add('active');
-    overlay.classList.add('active');
+    sideMenu.classList.add('active');
+    overlay.classList.add('active');
 });
 
-// LOGIKA SEARCH
+// LOGIKA SEARCH (Melebar Menutupi Brand)
 const searchIcon = document.getElementById('searchIcon');
 const searchInput = document.getElementById('searchInput');
 const clearBtn = document.getElementById('clearBtn');
 
 searchIcon.addEventListener('click', () => {
-    searchInput.classList.toggle('active');
-    if (searchInput.classList.contains('active')) searchInput.focus();
+    const isActive = searchInput.classList.toggle('active');
+    
+    if (isActive) {
+        header.classList.add('search-mode');
+        searchInput.focus();
+    } else {
+        header.classList.remove('search-mode');
+    }
+});
+
+// Tampilkan tombol X hanya jika ada teks
+searchInput.addEventListener('input', () => {
+    if (searchInput.value.length > 0) {
+        clearBtn.classList.add('show');
+    } else {
+        clearBtn.classList.remove('show');
+    }
 });
 
 clearBtn.addEventListener('click', () => {
-    if (searchInput.value.length > 0) {
-        searchInput.value = "";
-        searchInput.focus();
-    } else {
-        searchInput.classList.remove('active');
-    }
+    searchInput.value = "";
+    clearBtn.classList.remove('show');
+    searchInput.focus();
 });
 
 // LOGIKA BOTTOM SHEET
@@ -35,52 +47,53 @@ const descPanel = document.getElementById('descPanel');
 const closeDesc = document.getElementById('closeDesc');
 
 descArea.addEventListener('click', () => {
-    descPanel.classList.add('active');
-    overlay.classList.add('active');
+    descPanel.classList.add('active');
+    overlay.classList.add('active');
 });
 
 closeDesc.addEventListener('click', () => {
-    descPanel.classList.remove('active');
-    overlay.classList.remove('active');
+    descPanel.classList.remove('active');
+    overlay.classList.remove('active');
 });
 
+// Tutup semuanya jika klik Overlay
 overlay.addEventListener('click', () => {
-    sideMenu.classList.remove('active');
-    descPanel.classList.remove('active');
-    overlay.classList.remove('active');
+    sideMenu.classList.remove('active');
+    descPanel.classList.remove('active');
+    overlay.classList.remove('active');
+    // Tambahan: tutup search juga biar konsisten
+    searchInput.classList.remove('active');
+    header.classList.remove('search-mode');
 });
 
 // TOMBOL SUBSCRIBE
 const btnSub = document.getElementById('btnSub');
 btnSub.addEventListener('click', function() {
-    this.innerHTML = (this.innerHTML === "Subscribe") ? "Disubscribe" : "Subscribe";
-    this.classList.toggle('subscribed');
+    this.innerHTML = (this.innerHTML === "Subscribe") ? "Disubscribe" : "Subscribe";
+    this.classList.toggle('subscribed');
 });
 
-// --- LOGIKA DYNAMIC COLOR BACKGROUND (COLOR THIEF) ---
+// COLOR THIEF (Background Dinamis)
 const vidPlayer = document.getElementById('videoPlayer');
 const vidContainer = document.querySelector('.video-container');
 const colorThief = new ColorThief();
 
 function updatePosterColor() {
-    const posterUrl = vidPlayer.getAttribute('poster');
-    if (!posterUrl) return;
+    const posterUrl = vidPlayer.getAttribute('poster');
+    if (!posterUrl) return;
 
-    const img = new Image();
-    // Anonymous penting agar bisa akses gambar dari luar domain (GitHub)
-    img.crossOrigin = "Anonymous"; 
-    img.src = posterUrl;
+    const img = new Image();
+    img.crossOrigin = "Anonymous"; 
+    img.src = posterUrl;
 
-    img.onload = function() {
-        try {
-            const color = colorThief.getColor(img);
-            // Terapkan warna ke background container
-            vidContainer.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-        } catch (e) {
-            console.log("Gagal mengambil warna dominan", e);
-        }
-    };
+    img.onload = function() {
+        try {
+            const color = colorThief.getColor(img);
+            vidContainer.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+        } catch (e) {
+            console.log("Gagal mengambil warna", e);
+        }
+    };
 }
 
-// Jalankan fungsi saat halaman selesai dimuat
 window.addEventListener('load', updatePosterColor);
