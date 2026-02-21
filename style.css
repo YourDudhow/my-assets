@@ -293,3 +293,10 @@ body {
   height: 100px;
   object-fit: cover;
 }
+
+/* Tambahkan di bagian bawah file CSS untuk keamanan layar kecil */
+@media (max-width: 380px) {
+    .search-box.active {
+        width: 160px; /* Lebar lebih fleksibel untuk HP kecil */
+    }
+}
