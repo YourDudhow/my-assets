@@ -47,18 +47,27 @@ body {
   color: #606060;
 }
 
-.header {
+.header-left {
     display: flex;
-    justify-content: space-between;
-    padding: 15px;
     align-items: center;
+    gap: 15px; /* Jarak antara ikon hamburger dan teks */
+}
+
+.navbar-brand {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #0f0f0f;
+    letter-spacing: -0.5px;
 }
 
 .nav-icon {
-    fill: red;
-    height: 24px;
-    width: 24px;
+    fill: black;
+    height: 24px !important;
+    width: 24px !important;
+    min-width: 24px;
+    min-height: 24px;
     cursor: pointer;
+    display: block;
 }
 
 .header-icons {
