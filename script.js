@@ -10,14 +10,13 @@ menuToggle.addEventListener('click', () => {
     overlay.classList.add('active');
 });
 
-// LOGIKA SEARCH (Melebar Menutupi Brand)
+// LOGIKA SEARCH "SI MALU-MALU"
 const searchIcon = document.getElementById('searchIcon');
 const searchInput = document.getElementById('searchInput');
 const clearBtn = document.getElementById('clearBtn');
 
 searchIcon.addEventListener('click', () => {
     const isActive = searchInput.classList.toggle('active');
-    
     if (isActive) {
         header.classList.add('search-mode');
         searchInput.focus();
@@ -26,13 +25,8 @@ searchIcon.addEventListener('click', () => {
     }
 });
 
-// Tampilkan tombol X hanya jika ada teks
 searchInput.addEventListener('input', () => {
-    if (searchInput.value.length > 0) {
-        clearBtn.classList.add('show');
-    } else {
-        clearBtn.classList.remove('show');
-    }
+    clearBtn.classList.toggle('show', searchInput.value.length > 0);
 });
 
 clearBtn.addEventListener('click', () => {
@@ -56,24 +50,20 @@ closeDesc.addEventListener('click', () => {
     overlay.classList.remove('active');
 });
 
-// Tutup semuanya jika klik Overlay
 overlay.addEventListener('click', () => {
     sideMenu.classList.remove('active');
     descPanel.classList.remove('active');
     overlay.classList.remove('active');
-    // Tambahan: tutup search juga biar konsisten
     searchInput.classList.remove('active');
     header.classList.remove('search-mode');
 });
 
-// TOMBOL SUBSCRIBE
 const btnSub = document.getElementById('btnSub');
 btnSub.addEventListener('click', function() {
     this.innerHTML = (this.innerHTML === "Subscribe") ? "Disubscribe" : "Subscribe";
     this.classList.toggle('subscribed');
 });
 
-// COLOR THIEF (Background Dinamis)
 const vidPlayer = document.getElementById('videoPlayer');
 const vidContainer = document.querySelector('.video-container');
 const colorThief = new ColorThief();
@@ -81,19 +71,14 @@ const colorThief = new ColorThief();
 function updatePosterColor() {
     const posterUrl = vidPlayer.getAttribute('poster');
     if (!posterUrl) return;
-
     const img = new Image();
     img.crossOrigin = "Anonymous"; 
     img.src = posterUrl;
-
     img.onload = function() {
         try {
             const color = colorThief.getColor(img);
             vidContainer.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-        } catch (e) {
-            console.log("Gagal mengambil warna", e);
-        }
+        } catch (e) { console.log(e); }
     };
 }
-
 window.addEventListener('load', updatePosterColor);
