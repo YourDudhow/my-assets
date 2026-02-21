@@ -62,7 +62,7 @@ body {
 }
 
 .header-icons {
-  color: red;
+  fill: red;
   display: flex;
   align-items: center;
 }
