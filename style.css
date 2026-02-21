@@ -1,141 +1,79 @@
-/* --- RESET & DASAR TETAP SAMA --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
 
-body {
-    background-color: #ffffff;
-    overflow-x: hidden;
-}
+body { background-color: #fff; color: #0f0f0f; }
 
-/* --- MODIFIKASI HEADER --- */
-.header {
+/* Header & Layouting */
+.yt-main-header {
     display: flex;
     justify-content: space-between;
-    padding: 15px;
     align-items: center;
-    position: sticky; /* Agar tetap di atas saat scroll */
+    padding: 10px 15px;
+    position: sticky;
     top: 0;
     background: white;
     z-index: 100;
 }
 
-.header-left {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Jarak antara hamburger dan teks */
-}
+.yt-header-left { display: flex; align-items: center; gap: 18px; }
+.yt-brand-name { font-size: 1.2rem; font-weight: bold; }
+.yt-header-right { display: flex; align-items: center; }
 
-.header-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #0f0f0f;
-}
+.yt-icon { width: 24px; height: 24px; fill: currentColor; cursor: pointer; }
+.yt-icon-small { width: 18px; height: 18px; fill: #606060; }
 
-.nav-icon {
-    fill: black;
-    height: 24px;
-    width: 24px;
-    cursor: pointer;
+/* Search Logic CSS */
+.yt-search-container { position: relative; display: flex; align-items: center; }
+.yt-search-field {
+    width: 0; opacity: 0; border: none; outline: none;
+    background: #f1f1f1; border-radius: 20px; transition: 0.3s;
 }
+.yt-search-field.active {
+    width: 180px; opacity: 1; padding: 6px 35px 6px 15px; border: 1px solid #ccc; margin-right: 10px;
+}
+.yt-clear-search { position: absolute; right: 20px; display: none; }
+.yt-search-field.active + .yt-clear-search { display: block; }
 
-.header-icons {
-  display: flex;
-  align-items: center;
-}
+/* Banner */
+.yt-banner-box img { width: 100%; height: 100px; object-fit: cover; display: block; }
 
-/* Sisa CSS lainnya (Sidebar, Search, Video Player, dsb) tetap gunakan yang lama */
-.search-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
+/* Channel Section */
+.yt-channel-section { padding: 15px; }
+.yt-profile-wrapper { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; }
+.yt-avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
+.yt-channel-text h1 { font-size: 1.3rem; display: flex; align-items: center; gap: 5px; }
+.yt-v-badge { width: 14px; fill: #606060; }
+.yt-meta { color: #606060; font-size: 0.85rem; }
 
-.search-box {
-    border: none;
-    border-radius: 17px;
-    outline: none;
-    width: 0;
-    padding: 5px 0;
-    opacity: 0;
-    background-color: #f9f9f9;
-    transition: all 0.4s ease;
-}
+.yt-desc-box { margin-top: 10px; cursor: pointer; }
+.yt-desc-short { font-size: 0.9rem; line-height: 1.4; }
+.yt-more-link { font-weight: bold; }
+.yt-external-link { color: #065fd4; text-decoration: none; font-size: 0.9rem; display: block; margin: 5px 0; }
 
-.search-box.active {
-    width: 200px; /* Ukuran disesuaikan agar tidak tabrakan dengan teks kiri */
-    padding: 5px 35px 5px 12px;
-    opacity: 1;
-    border: 2px solid #065fd4;
-    margin-right: 10px;
+.yt-btn-black {
+    width: 100%; background: #0f0f0f; color: #fff; border: none;
+    padding: 10px; border-radius: 25px; font-weight: bold; margin-top: 10px;
 }
+.yt-btn-black.subscribed { background: #f2f2f2; color: #0f0f0f; }
 
-/* --- CSS LANJUTAN --- */
-.banner img {
-  width: 100%;
-  height: 100px;
-  object-fit: cover;
-}
+/* Tabs */
+.yt-tabs-bar { display: flex; border-bottom: 1px solid #e5e5e5; overflow-x: auto; }
+.yt-tab-item { padding: 12px 20px; color: #606060; font-weight: 500; white-space: nowrap; }
+.yt-tab-item.active { color: #0f0f0f; border-bottom: 2px solid #0f0f0f; }
 
-.channel-info {
-  padding: 15px;
-}
+/* Content Area */
+.yt-player-container { width: 100%; aspect-ratio: 16/9; background: #000; overflow: hidden; display: flex; align-items: center; }
+.yt-player-container video { width: 100%; }
+.yt-video-details { padding: 12px 15px; background: #f9f9f9; }
 
-.profile-flex {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
+/* Overlay & Sidebar & Sheet */
+.yt-overlay-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 900; }
+.yt-overlay-bg.active { display: block; }
 
-.profile-img {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  object-fit: cover;
-}
+.yt-side-nav { position: fixed; top: 0; left: -260px; width: 250px; height: 100%; background: #fff; transition: 0.3s; z-index: 1000; }
+.yt-side-nav.active { left: 0; }
 
-.sub-btn { 
-    width: 100%;
-    background: #0f0f0f;
-    color: white;
-    border: none; 
-    padding: 10px;
-    border-radius: 20px;
-    font-weight: bold; 
-    margin-top: 15px; 
+.yt-sheet {
+    position: fixed; bottom: -100%; left: 0; width: 100%; height: 60%;
+    background: #fff; border-radius: 20px 20px 0 0; transition: 0.4s; z-index: 2000; padding: 20px;
 }
-
-.tabs {
-  display: flex;
-  border-bottom: 1px solid #e5e5e5;
-  overflow-x: auto; /* Biar bisa digeser di HP */
-}
-
-.tab {
-  padding: 12px 18px;
-  color: #606060;
-  white-space: nowrap;
-}
-
-.tab.active {
-  color: #0f0f0f;
-  border-bottom: 2px solid #0f0f0f;
-}
-
-/* Overlay & Sidebar */
-.overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5); display: none; z-index: 900;
-}
-.overlay.active { display: block; }
-
-.sidebar {
-    position: fixed;
-    top: 0; left: -260px; width: 250px; height: 100%;
-    background-color: #fff; z-index: 1000; transition: 0.3s;
-}
-.sidebar.active { left: 0; }
+.yt-sheet.active { bottom: 0; }
