@@ -90,6 +90,7 @@ body {
 .search-wrapper {
   position: absolute;
   right: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   pointer-events: none;
