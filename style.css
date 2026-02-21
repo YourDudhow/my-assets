@@ -47,6 +47,7 @@ body {
     color: #606060; 
 }
 
+/* Update bagian Header & Search agar bisa menggeser */
 .header {
     display: flex;
     justify-content: space-between;
@@ -57,6 +58,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
+    overflow: hidden; /* Penting agar kotak yang geser tidak meluber keluar header */
 }
 
 .header-left {
@@ -67,16 +69,9 @@ body {
     transition: opacity 0.3s ease;
 }
 
-/* Sembunyikan Brand saat Search Aktif */
+/* Tulisan memudar saat pencarian aktif */
 .header.search-mode .navbar-brand {
-    display: none;
-}
-
-.navbar-brand {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #0f0f0f;
-    white-space: nowrap;
+    opacity: 0;
 }
 
 .header-icons {
@@ -85,32 +80,33 @@ body {
     justify-content: flex-end;
 }
 
-/* SEARCH WRAPPER MELEBAR */
+/* SEARCH WRAPPER GAYA MENGGESER (SLIDE) */
 .search-wrapper {
     position: absolute;
     right: 50px;
-    left: 56px; /* Agar tidak menutupi ikon hamburger */
+    left: 56px; 
     display: flex;
     align-items: center;
     pointer-events: none;
+    /* Mulai dari kanan (di luar jangkauan pandang/tersembunyi) */
+    transform: translateX(110%); 
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 4;
+}
+
+/* Saat aktif, geser kembali ke posisi semula (0) */
+.header.search-mode .search-wrapper {
+    transform: translateX(0);
+    pointer-events: all;
 }
 
 .search-box {
     border: none;
     border-radius: 20px;
     outline: none;
-    width: 0;
-    padding: 0;
-    opacity: 0;
-    background-color: #f2f2f2;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.search-box.active {
-    width: 100%;
+    width: 100%; /* Lebar sudah penuh di dalam wrapper */
     padding: 7px 40px 7px 15px;
-    opacity: 1;
-    pointer-events: all;
+    background-color: #f2f2f2;
 }
 
 .nav-icon {
@@ -133,7 +129,6 @@ body {
     cursor: pointer;
     visibility: hidden;
     opacity: 0;
-    transition: 0.2s;
 }
 
 .clear-icon.show {
