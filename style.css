@@ -22,9 +22,7 @@ body {
     z-index: 900;
 }
 
-.overlay.active { 
-    display: block; 
-}
+.overlay.active { display: block; }
 
 .sidebar {
     position: fixed;
@@ -38,16 +36,11 @@ body {
     z-index: 1000;
 }
 
-.sidebar.active { 
-    left: 0; 
-}
+.sidebar.active { left: 0; }
 
-.sidebar-content { 
-    padding: 20px; 
-    color: #606060; 
-}
+.sidebar-content { padding: 20px; color: #606060; }
 
-/* Update bagian Header & Search agar bisa menggeser */
+/* HEADER MODIFIKASI */
 .header {
     display: flex;
     justify-content: space-between;
@@ -58,7 +51,6 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    overflow: hidden; /* Penting agar kotak yang geser tidak meluber keluar header */
 }
 
 .header-left {
@@ -69,9 +61,16 @@ body {
     transition: opacity 0.3s ease;
 }
 
-/* Tulisan memudar saat pencarian aktif */
+/* Sembunyikan Brand saat Search Aktif */
 .header.search-mode .navbar-brand {
-    opacity: 0;
+    display: none;
+}
+
+.navbar-brand {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #0f0f0f;
+    white-space: nowrap;
 }
 
 .header-icons {
@@ -80,33 +79,32 @@ body {
     justify-content: flex-end;
 }
 
-/* SEARCH WRAPPER GAYA MENGGESER (SLIDE) */
+/* SEARCH WRAPPER MELEBAR */
 .search-wrapper {
     position: absolute;
-    right: 50px;
-    left: 56px; 
+    right: 50px; /* Di samping ikon search */
+    left: 16px;
     display: flex;
     align-items: center;
-    pointer-events: none;
-    /* Mulai dari kanan (di luar jangkauan pandang/tersembunyi) */
-    transform: translateX(110%); 
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 4;
-}
-
-/* Saat aktif, geser kembali ke posisi semula (0) */
-.header.search-mode .search-wrapper {
-    transform: translateX(0);
-    pointer-events: all;
+    pointer-events: none; /* Klik tidak tembus saat width 0 */
 }
 
 .search-box {
     border: none;
     border-radius: 20px;
     outline: none;
-    width: 100%; /* Lebar sudah penuh di dalam wrapper */
-    padding: 7px 40px 7px 15px;
+    width: 0;
+    padding: 0;
+    opacity: 0;
     background-color: #f2f2f2;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-box.active {
+    width: 100%;
+    padding: 7px 40px 7px 15px;
+    opacity: 1;
+    pointer-events: all;
 }
 
 .nav-icon {
@@ -129,6 +127,7 @@ body {
     cursor: pointer;
     visibility: hidden;
     opacity: 0;
+    transition: 0.2s;
 }
 
 .clear-icon.show {
@@ -136,7 +135,7 @@ body {
     opacity: 1;
 }
 
-/* Konten lainnya */
+/* --- SISANYA TETAP SAMA --- */
 .banner img { width: 100%; height: 100px; object-fit: cover; }
 .channel-info { padding: 15px; }
 .profile-flex { display: flex; align-items: center; gap: 15px; }
