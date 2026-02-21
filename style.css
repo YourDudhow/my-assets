@@ -22,7 +22,9 @@ body {
     z-index: 900;
 }
 
-.overlay.active { display: block; }
+.overlay.active {
+  display: block;
+}
 
 .sidebar {
     position: fixed;
@@ -36,14 +38,18 @@ body {
     z-index: 1000;
 }
 
-.sidebar.active { left: 0; }
+.sidebar.active {
+  left: 0;
+}
 
-.sidebar-content { padding: 20px; color: #606060; }
+.sidebar-content {
+  padding: 20px;
+  color: #606060;
+}
 
-/* HEADER MODIFIKASI */
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Ini kunci agar kiri dan kanan terpisah */
     align-items: center;
     padding: 0 16px;
     height: 56px;
@@ -57,54 +63,17 @@ body {
     display: flex;
     align-items: center;
     gap: 16px;
-    flex: 1;
-    transition: opacity 0.3s ease;
-}
-
-/* Sembunyikan Brand saat Search Aktif */
-.header.search-mode .navbar-brand {
-    display: none;
 }
 
 .navbar-brand {
     font-size: 1.2rem;
     font-weight: bold;
     color: #0f0f0f;
-    white-space: nowrap;
 }
 
 .header-icons {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-}
-
-/* SEARCH WRAPPER MELEBAR */
-.search-wrapper {
-    position: absolute;
-    right: 50px; /* Di samping ikon search */
-    left: 16px;
-    display: flex;
-    align-items: center;
-    pointer-events: none; /* Klik tidak tembus saat width 0 */
-}
-
-.search-box {
-    border: none;
-    border-radius: 20px;
-    outline: none;
-    width: 0;
-    padding: 0;
-    opacity: 0;
-    background-color: #f2f2f2;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.search-box.active {
-    width: 100%;
-    padding: 7px 40px 7px 15px;
-    opacity: 1;
-    pointer-events: all;
 }
 
 .nav-icon {
@@ -115,49 +84,219 @@ body {
     min-height: 24px;
     cursor: pointer;
     display: block;
-    z-index: 5;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-box {
+    border: none;
+    border-radius: 17px;
+    outline: none;
+    width: 0;
+    padding: 5px 0;
+    opacity: 0;
+    background-color: #f9f9f9;
+    transition: all 0.4s ease;
+}
+
+.search-box.active {
+    width: 280px;
+    padding: 5px 35px 5px 12px;
+    opacity: 1;
+    border: 2px solid #065fd4;
+    margin-right: 10px;
 }
 
 .clear-icon {
     position: absolute;
-    right: 10px;
+    right: 20px;
     fill: #606060;
-    width: 20px !important;
-    height: 20px !important;
+    width: 18px !important;
+    height: 18px !important;
     cursor: pointer;
-    visibility: hidden;
     opacity: 0;
-    transition: 0.2s;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    transform: scale(0.5);
 }
 
-.clear-icon.show {
-    visibility: visible;
-    opacity: 1;
+.search-box.active + .clear-icon {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
 }
 
-/* --- SISANYA TETAP SAMA --- */
-.banner img { width: 100%; height: 100px; object-fit: cover; }
-.channel-info { padding: 15px; }
-.profile-flex { display: flex; align-items: center; gap: 15px; }
-.profile-img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
-.name-area h1 { font-size: 1.3rem; display: flex; align-items: center; }
-.verified-icon { fill: #606060; width: 14px !important; height: 14px !important; margin-left: 5px; }
-.stats { color: #606060; font-size: 0.8rem; }
-.desc-container { margin-top: 10px; cursor: pointer; }
-.desc-text { font-size: 0.85rem; color: #333; line-height: 1.4; }
-.more-text { font-weight: bold; color: #0f0f0f; }
-.link { display: inline-block; margin-top: 5px; color: #065fd4; text-decoration: none; font-size: 0.85rem; }
-.sub-btn { width: 100%; background: #0f0f0f; color: white; border: none; padding: 10px; border-radius: 20px; font-weight: bold; margin-top: 15px; }
-.sub-btn.subscribed { background-color: #f2f2f2; color: #0f0f0f; }
-.tabs { display: flex; border-bottom: 1px solid #e5e5e5; }
-.tab { padding: 12px 18px; color: #606060; font-size: 0.9rem; font-weight: 500; }
-.tab.active { color: #0f0f0f; border-bottom: 2px solid #0f0f0f; }
-.content-area { padding: 0; background-color: #f9f9f9; }
-.video-container { background: #000; width: 100%; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: background 0.6s ease; }
-.video-container video { max-width: 100%; max-height: 100%; display: block; object-fit: contain; }
-.video-info { padding: 12px 15px; }
-.video-info h3 { font-size: 1rem; margin-bottom: 5px; color: #0f0f0f; }
-.bottom-sheet { position: fixed; bottom: -100%; left: 0; width: 100%; height: 65%; background: white; z-index: 2000; border-radius: 20px 20px 0 0; transition: bottom 0.4s cubic-bezier(0.25, 1, 0.5, 1); padding: 20px; }
-.bottom-sheet.active { bottom: 0; }
-.sheet-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
-.sheet-header svg { width: 28px; height: 28px; fill: #0f0f0f; }
+/* --- VIDEO PLAYER MODIFIKASI --- */
+.content-area { 
+    padding: 0; 
+    background-color: #f9f9f9; 
+}
+
+.video-container { 
+    background: #000; /* Warna dasar */
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Kunci Wadah ke 16:9 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: background 0.6s ease; /* Efek transisi warna halus */
+}
+
+.video-container video { 
+    max-width: 100%; 
+    max-height: 100%; 
+    display: block;
+    object-fit: contain; /* Penting: menjaga rasio video asli di dalam wadah */
+}
+
+.video-info { 
+    padding: 12px 15px; 
+}
+
+.video-info h3 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: #0f0f0f;
+}
+
+.bottom-sheet {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 65%;
+    background: white;
+    z-index: 2000;
+    border-radius: 20px 20px 0 0;
+    transition: bottom 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    padding: 20px;
+}
+
+.bottom-sheet.active {
+  bottom: 0;
+}
+
+.sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.sheet-header svg {
+  width: 28px;
+  height: 28px;
+  fill: #0f0f0f;
+}
+
+.channel-info {
+  padding: 15px;
+}
+
+.profile-flex {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name-area h1 {
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+}
+
+.verified-icon {
+    fill: #606060;
+    width: 14px !important;
+    height: 14px !important;
+    margin-left: 5px;
+}
+
+.stats {
+  color: #606060;
+  font-size: 0.8rem;
+}
+
+.desc-container {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.desc-text {
+  font-size: 0.85rem;
+  color: #333;
+  line-height: 1.4;
+}
+
+.more-text {
+  font-weight: bold;
+  color: #0f0f0f;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 5px;
+  color: #065fd4;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.sub-btn { 
+    width: 100%;
+    background: #0f0f0f;
+    color: white;
+    border: none; 
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold; 
+    margin-top: 15px; 
+}
+
+.sub-btn.subscribed {
+  background-color: #f2f2f2;
+  color: #0f0f0f;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.tab {
+  padding: 12px 18px;
+  color: #606060;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.tab.active {
+  color: #0f0f0f;
+  border-bottom: 2px solid #0f0f0f;
+}
+
+.banner img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+/* Tambahkan di bagian bawah file CSS untuk keamanan layar kecil */
+@media (max-width: 380px) {
+    .search-box.active {
+        width: 160px; /* Lebar lebih fleksibel untuk HP kecil */
+    }
+}
