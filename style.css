@@ -49,32 +49,41 @@ body {
 
 .header {
     display: flex;
-    justify-content: space-between; /* Mendorong konten ke ujung kiri & kanan */
+    justify-content: space-between; /* Ini kunci agar kiri dan kanan terpisah */
     align-items: center;
-    padding: 10px 16px;
+    padding: 0 16px;
     height: 56px;
     background-color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .header-left {
     display: flex;
     align-items: center;
-    gap: 18px; /* Jarak antara hamburger dan tulisan TesTimoni */
+    gap: 16px;
+}
+
+.navbar-brand {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #0f0f0f;
 }
 
 .header-icons {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Memastikan ikon search merapat ke kanan */
 }
 
 .nav-icon {
     fill: #000;
-    height: 24px !important;
     width: 24px !important;
+    height: 24px !important;
     min-width: 24px;
     min-height: 24px;
     cursor: pointer;
+    display: block;
 }
 
 .search-wrapper {
