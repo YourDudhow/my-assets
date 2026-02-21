@@ -42,12 +42,6 @@ body {
     left: 0; 
 }
 
-.sidebar-content { 
-    padding: 20px; 
-    color: #606060; 
-}
-
-/* Update bagian Header & Search agar bisa menggeser */
 .header {
     display: flex;
     justify-content: space-between;
@@ -58,7 +52,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    overflow: hidden; /* Penting agar kotak yang geser tidak meluber keluar header */
+    overflow: hidden; /* Penting: agar kotak yang menggeser tidak meluber keluar */
 }
 
 .header-left {
@@ -69,9 +63,18 @@ body {
     transition: opacity 0.3s ease;
 }
 
-/* Tulisan memudar saat pencarian aktif */
+/* Sembunyikan Brand saat Search Aktif */
 .header.search-mode .navbar-brand {
     opacity: 0;
+    pointer-events: none;
+}
+
+.navbar-brand {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #0f0f0f;
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
 }
 
 .header-icons {
@@ -80,21 +83,21 @@ body {
     justify-content: flex-end;
 }
 
-/* SEARCH WRAPPER GAYA MENGGESER (SLIDE) */
+/* SEARCH WRAPPER - LOGIKA MENGGESER (SLIDE) */
 .search-wrapper {
     position: absolute;
-    right: 50px;
-    left: 56px; 
+    right: 50px; /* Di samping ikon search */
+    left: 56px; /* Agar tidak menabrak ikon hamburger */
     display: flex;
     align-items: center;
     pointer-events: none;
-    /* Mulai dari kanan (di luar jangkauan pandang/tersembunyi) */
-    transform: translateX(110%); 
+    /* Posisikan di luar layar sebelah kanan */
+    transform: translateX(110%);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 4;
+    z-index: 5;
 }
 
-/* Saat aktif, geser kembali ke posisi semula (0) */
+/* Geser masuk saat mode search aktif */
 .header.search-mode .search-wrapper {
     transform: translateX(0);
     pointer-events: all;
@@ -104,7 +107,7 @@ body {
     border: none;
     border-radius: 20px;
     outline: none;
-    width: 100%; /* Lebar sudah penuh di dalam wrapper */
+    width: 100%;
     padding: 7px 40px 7px 15px;
     background-color: #f2f2f2;
 }
@@ -117,7 +120,7 @@ body {
     min-height: 24px;
     cursor: pointer;
     display: block;
-    z-index: 5;
+    z-index: 10;
 }
 
 .clear-icon {
@@ -129,6 +132,7 @@ body {
     cursor: pointer;
     visibility: hidden;
     opacity: 0;
+    transition: 0.2s;
 }
 
 .clear-icon.show {
@@ -136,29 +140,13 @@ body {
     opacity: 1;
 }
 
-/* Konten lainnya */
+/* Konten Lainnya */
 .banner img { width: 100%; height: 100px; object-fit: cover; }
 .channel-info { padding: 15px; }
 .profile-flex { display: flex; align-items: center; gap: 15px; }
 .profile-img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
-.name-area h1 { font-size: 1.3rem; display: flex; align-items: center; }
-.verified-icon { fill: #606060; width: 14px !important; height: 14px !important; margin-left: 5px; }
-.stats { color: #606060; font-size: 0.8rem; }
-.desc-container { margin-top: 10px; cursor: pointer; }
-.desc-text { font-size: 0.85rem; color: #333; line-height: 1.4; }
-.more-text { font-weight: bold; color: #0f0f0f; }
-.link { display: inline-block; margin-top: 5px; color: #065fd4; text-decoration: none; font-size: 0.85rem; }
 .sub-btn { width: 100%; background: #0f0f0f; color: white; border: none; padding: 10px; border-radius: 20px; font-weight: bold; margin-top: 15px; }
-.sub-btn.subscribed { background-color: #f2f2f2; color: #0f0f0f; }
-.tabs { display: flex; border-bottom: 1px solid #e5e5e5; }
-.tab { padding: 12px 18px; color: #606060; font-size: 0.9rem; font-weight: 500; }
-.tab.active { color: #0f0f0f; border-bottom: 2px solid #0f0f0f; }
-.content-area { padding: 0; background-color: #f9f9f9; }
-.video-container { background: #000; width: 100%; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: background 0.6s ease; }
+.video-container { background: #000; width: 100%; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .video-container video { max-width: 100%; max-height: 100%; display: block; object-fit: contain; }
-.video-info { padding: 12px 15px; }
-.video-info h3 { font-size: 1rem; margin-bottom: 5px; color: #0f0f0f; }
-.bottom-sheet { position: fixed; bottom: -100%; left: 0; width: 100%; height: 65%; background: white; z-index: 2000; border-radius: 20px 20px 0 0; transition: bottom 0.4s cubic-bezier(0.25, 1, 0.5, 1); padding: 20px; }
+.bottom-sheet { position: fixed; bottom: -100%; left: 0; width: 100%; height: 65%; background: white; z-index: 2000; border-radius: 20px 20px 0 0; transition: 0.4s; padding: 20px; }
 .bottom-sheet.active { bottom: 0; }
-.sheet-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
-.sheet-header svg { width: 28px; height: 28px; fill: #0f0f0f; }
