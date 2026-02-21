@@ -63,6 +63,7 @@ body {
     display: flex;
     align-items: center;
     gap: 16px;
+    z-index: 5;
 }
 
 .navbar-brand {
