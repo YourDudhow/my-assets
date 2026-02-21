@@ -1,44 +1,33 @@
-const menuBtn = document.getElementById('yt-menu-btn');
+// Navigasi Sidebar
+const menuToggle = document.getElementById('yt-menu-toggle');
 const sidebar = document.getElementById('yt-sidebar');
 const overlay = document.getElementById('yt-overlay');
-const searchTrigger = document.getElementById('yt-search-trigger');
-const searchInput = document.getElementById('yt-search-input');
-const subBtn = document.getElementById('yt-sub-btn');
 
-// Buka Menu
-menuBtn.addEventListener('click', () => {
+menuToggle.addEventListener('click', () => {
     sidebar.classList.add('active');
     overlay.classList.add('active');
 });
 
-// Tutup Menu
 overlay.addEventListener('click', () => {
     sidebar.classList.remove('active');
     overlay.classList.remove('active');
 });
 
-// Animasi Search
-searchTrigger.addEventListener('click', () => {
-    searchInput.classList.toggle('active');
-    if(searchInput.classList.contains('active')) searchInput.focus();
-});
-
-// Tombol Subscribe
+// Logika Tombol Subscribe
+const subBtn = document.getElementById('yt-subscribe-btn');
 subBtn.addEventListener('click', function() {
     if (this.innerText === "Subscribe") {
         this.innerText = "Disubscribe";
-        this.style.background = "#f2f2f2";
-        this.style.color = "#000";
+        this.classList.add('active');
     } else {
         this.innerText = "Subscribe";
-        this.style.background = "#0f0f0f";
-        this.style.color = "#fff";
+        this.classList.remove('active');
     }
 });
 
-// Fitur Warna Dominan (Color Thief)
+// Ambient Mode (Warna Dominan)
 window.addEventListener('load', () => {
-    const video = document.getElementById('yt-main-video');
+    const video = document.getElementById('yt-video');
     const poster = video.getAttribute('poster');
     if (poster) {
         const img = new Image();
@@ -47,7 +36,7 @@ window.addEventListener('load', () => {
         img.onload = () => {
             const thief = new ColorThief();
             const color = thief.getColor(img);
-            document.querySelector('.yt-player-container').style.backgroundColor = `rgb(${color[0]},${color[1]},${color[2]})`;
+            document.querySelector('.yt-video-card').style.backgroundColor = `rgb(${color[0]},${color[1]},${color[2]})`;
         };
     }
 });
