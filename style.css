@@ -89,8 +89,11 @@ body {
 
 .search-wrapper {
   position: absolute;
+  right: 40px;
   display: flex;
   align-items: center;
+  pointer-events: none;
+  z-index: 10px;
 }
 
 .search-box {
