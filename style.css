@@ -74,6 +74,7 @@ body {
 .header-icons {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .nav-icon {
