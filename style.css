@@ -1,77 +1,72 @@
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+/* Reset Dasar */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background: #fff; color: #0f0f0f; overflow-x: hidden; }
 
-body { background: #fff; overflow-x: hidden; }
-
-/* --- FIX UKURAN IKON (SOLUSI UTAMA) --- */
-.yt-svg {
+/* KUNCI UKURAN IKON (Agar tidak raksasa) */
+.yt-icon-svg {
     width: 24px !important;
     height: 24px !important;
     min-width: 24px;
     min-height: 24px;
-    fill: #0f0f0f;
+    fill: #000;
+    cursor: pointer;
     display: block;
 }
 
-.yt-svg-small {
-    width: 18px !important;
-    height: 18px !important;
-    fill: #606060;
-    display: none; /* Sembunyi jika search tidak aktif */
-}
-
-/* Header */
-.yt-main-header {
+/* NAVBAR / HEADER */
+.yt-navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 15px;
     height: 56px;
+    padding: 0 16px;
+    background: #fff;
     position: sticky;
     top: 0;
-    background: #fff;
     z-index: 100;
 }
 
-.yt-header-left { display: flex; align-items: center; gap: 20px; }
-.yt-brand-name { font-size: 1.1rem; font-weight: bold; white-space: nowrap; }
-.yt-header-right { display: flex; align-items: center; gap: 15px; }
-
-/* Search Box */
-.yt-search-container { display: flex; align-items: center; }
-.yt-search-field {
-    width: 0; opacity: 0; border: none; outline: none;
-    background: #f1f1f1; border-radius: 20px; transition: 0.3s;
-}
-.yt-search-field.active {
-    width: 140px; opacity: 1; padding: 5px 12px; border: 1px solid #ccc;
+.yt-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 18px; /* Jarak antara hamburger dan tulisan */
 }
 
-/* Info Channel */
-.yt-banner-box img { width: 100%; height: 100px; object-fit: cover; }
-.yt-channel-section { padding: 15px; }
-.yt-profile-wrapper { display: flex; align-items: center; gap: 15px; }
-.yt-avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
-.yt-channel-text h1 { font-size: 1.2rem; display: flex; align-items: center; gap: 5px; }
-.yt-v-badge { width: 14px !important; height: 14px !important; fill: #606060; }
-.yt-meta { color: #606060; font-size: 0.8rem; margin-top: 2px; }
-
-.yt-btn-black {
-    width: 100%; background: #0f0f0f; color: #fff; border: none;
-    padding: 10px; border-radius: 20px; font-weight: bold; margin-top: 15px;
+.yt-navbar-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000;
 }
 
-/* Tabs */
-.yt-tabs-bar { display: flex; border-bottom: 1px solid #e5e5e5; overflow-x: auto; }
-.yt-tab-item { padding: 12px 15px; color: #606060; font-size: 0.9rem; white-space: nowrap; }
-.yt-tab-item.active { color: #000; border-bottom: 2px solid #000; }
+/* CHANNEL INFO */
+.yt-banner img { width: 100%; height: 110px; object-fit: cover; }
+.yt-channel-info { padding: 16px; }
+.yt-profile-flex { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+.yt-profile-img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
+.yt-name-area h1 { font-size: 1.3rem; display: flex; align-items: center; gap: 5px; }
+.yt-verified { width: 14px !important; height: 14px !important; fill: #606060; }
+.yt-stats { color: #606060; font-size: 0.85rem; }
+.yt-description { font-size: 0.9rem; margin: 10px 0; color: #333; }
+.yt-link { color: #065fd4; text-decoration: none; font-size: 0.9rem; }
 
-/* Video Player */
-.yt-player-container { width: 100%; aspect-ratio: 16/9; background: #000; display: flex; align-items: center; }
-.yt-player-container video { width: 100%; }
-.yt-video-details { padding: 12px; background: #f9f9f9; }
+.yt-subscribe-btn {
+    width: 100%; padding: 10px; border-radius: 25px; border: none;
+    background: #0f0f0f; color: #fff; font-weight: bold; margin-top: 15px;
+}
+.yt-subscribe-btn.active { background: #f2f2f2; color: #000; }
 
-/* Overlay & Side */
-.yt-overlay-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 900; }
-.yt-overlay-bg.active { display: block; }
-.yt-side-nav { position: fixed; top: 0; left: -260px; width: 250px; height: 100%; background: #fff; z-index: 1000; transition: 0.3s; }
-.yt-side-nav.active { left: 0; }
+/* TABS */
+.yt-tabs { display: flex; border-bottom: 1px solid #e5e5e5; overflow-x: auto; }
+.yt-tab { padding: 12px 18px; color: #606060; font-weight: 500; white-space: nowrap; }
+.yt-tab.active { color: #000; border-bottom: 2px solid #000; }
+
+/* VIDEO AREA */
+.yt-video-card { width: 100%; background: #000; }
+.yt-video-card video { width: 100%; aspect-ratio: 16/9; display: block; }
+.yt-video-info { padding: 12px 16px; background: #fff; }
+
+/* SIDEBAR & OVERLAY */
+.yt-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 900; }
+.yt-sidebar { position: fixed; top: 0; left: -260px; width: 250px; height: 100%; background: #fff; z-index: 1000; transition: 0.3s; }
+.yt-sidebar.active { left: 0; }
+.yt-overlay.active { display: block; }
