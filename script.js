@@ -1,5 +1,8 @@
 const overlay = document.getElementById('overlay');
 const header = document.getElementById('mainHeader');
+const searchIcon = document.getElementById('searchIcon');
+const searchInput = document.getElementById('searchInput');
+const clearBtn = document.getElementById('clearBtn');
 
 // LOGIKA SIDEBAR
 const menuToggle = document.getElementById('menuToggle');
@@ -10,32 +13,38 @@ menuToggle.addEventListener('click', () => {
     overlay.classList.add('active');
 });
 
-// LOGIKA SEARCH "SI MALU-MALU"
-const searchIcon = document.getElementById('searchIcon');
-const searchInput = document.getElementById('searchInput');
-const clearBtn = document.getElementById('clearBtn');
-
+// LOGIKA SEARCH SLIDE
 searchIcon.addEventListener('click', () => {
-    const isActive = searchInput.classList.toggle('active');
-    if (isActive) {
-        header.classList.add('search-mode');
+    header.classList.add('search-mode');
+    searchInput.focus();
+});
+
+// Kontrol tombol X dan fungsi tutup
+clearBtn.addEventListener('click', () => {
+    if (searchInput.value.length > 0) {
+        searchInput.value = "";
+        clearBtn.classList.remove('show');
         searchInput.focus();
     } else {
+        // Jika input kosong, geser balik keluar (tutup)
         header.classList.remove('search-mode');
     }
 });
 
+// Munculkan ikon X saat ada ketikan
 searchInput.addEventListener('input', () => {
     clearBtn.classList.toggle('show', searchInput.value.length > 0);
 });
 
-clearBtn.addEventListener('click', () => {
-    searchInput.value = "";
-    clearBtn.classList.remove('show');
-    searchInput.focus();
+// Tutup semuanya lewat Overlay
+overlay.addEventListener('click', () => {
+    sideMenu.classList.remove('active');
+    header.classList.remove('search-mode');
+    overlay.classList.remove('active');
+    document.getElementById('descPanel').classList.remove('active');
 });
 
-// LOGIKA BOTTOM SHEET
+// LOGIKA BOTTOM SHEET & LAINNYA
 const descArea = document.getElementById('descArea');
 const descPanel = document.getElementById('descPanel');
 const closeDesc = document.getElementById('closeDesc');
@@ -50,35 +59,8 @@ closeDesc.addEventListener('click', () => {
     overlay.classList.remove('active');
 });
 
-overlay.addEventListener('click', () => {
-    sideMenu.classList.remove('active');
-    descPanel.classList.remove('active');
-    overlay.classList.remove('active');
-    searchInput.classList.remove('active');
-    header.classList.remove('search-mode');
-});
-
 const btnSub = document.getElementById('btnSub');
 btnSub.addEventListener('click', function() {
     this.innerHTML = (this.innerHTML === "Subscribe") ? "Disubscribe" : "Subscribe";
     this.classList.toggle('subscribed');
 });
-
-const vidPlayer = document.getElementById('videoPlayer');
-const vidContainer = document.querySelector('.video-container');
-const colorThief = new ColorThief();
-
-function updatePosterColor() {
-    const posterUrl = vidPlayer.getAttribute('poster');
-    if (!posterUrl) return;
-    const img = new Image();
-    img.crossOrigin = "Anonymous"; 
-    img.src = posterUrl;
-    img.onload = function() {
-        try {
-            const color = colorThief.getColor(img);
-            vidContainer.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-        } catch (e) { console.log(e); }
-    };
-}
-window.addEventListener('load', updatePosterColor);
