@@ -62,7 +62,6 @@ body {
 }
 
 .header-icons {
-  fill: red;
   display: flex;
   align-items: center;
 }
